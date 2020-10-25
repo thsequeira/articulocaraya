@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Carayá | 5 reglas para nombrar variables</title>
+        <link rel="icon" href="carayá.png">
+        <link rel="stylesheet" type="text/css" href="sandbox.css">
+        <link rel="stylesheet" type="text/css" href="../build/content-tools.min.css">
+    </head>
+    <body>
+        <article class="article">
+            <section class="article__content"  >
+
+                <h1 data-fixture data-name="article-title">
+                    5 reglas para nombrar variables
+                </h1>
+
+                <div data-editable data-name="article">
+                    <p class="article__by-line">
+                        by <b>Thiago Sequeira</b> · 24 de Octubre 2020
+                    </p>
+
+                    <blockquote>
+                        Escribir código de mala calidad reducirá drásticamente el tiempo
+                        que puedes gastar haciendo cosas que amas, si tienes la suficiente suerte
+                        como para dejar un proyecto poco después de tal contribución
+                        todos los que posteriormente tengan que trabajar con su código
+                        creerán que eres un idiota.
+                    </blockquote>
+
+                    <img src="image.png" alt="Example of bad variable names">
+
+                    <p class="article__caption">
+                        <b>Encima:</b> Este ejemplo es un código que se encuentra en
+                        un proyecto comercial y vivo. Claramente el desarrollador pensó que
+                        <b>user.n5</b> todavía señalaría claramente al quinto
+                        carácter del nombre del usuario cuando se utiliza en otro lugar.
+                    </p>
+
+                    <p>
+                        Los nombres que diseñamos para carpetas, archivos, variables, funciones, 
+                        clases y cualquier otra construcción definible por el usuario determinarán 
+                        (en su mayor parte) la facilidad con la que alguien más puede leer y 
+                        comprender lo que hemos escrito.
+                    </p>
+                    <p>
+                        Para evitar la repetición en el resto de esta sección, 
+                        usamos el término variable para cubrir carpetas, archivos, 
+                        variables, funciones y clases.
+                    </p>
+
+                        <iframe
+                         width="400" 
+                         height="300" 
+                         src="https://www.youtube.com/embed/rbuYtrNUxg4" 
+                         frameborder="0" 
+                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                        <p class="article__caption">
+                            <b>Encima:</b> Recomiendo este video para quienes son principiantes
+                            en el mundo de desarrollo web, el mismo me ha ayudado muchisimo 
+                            a mejorar profesionalmente. 
+                        </p>
+
+                    <h2>Ser descriptivo y conciso</h2>
+
+                    <p>
+                        Es la regla de nomenclatura más obvia de todas, 
+                        pero también es quizás la más difícil.
+                        Yo solía usar nombres muy descriptivos, 
+                        saqué lo siguiente de los archivos:
+                    </p>
+
+                    <pre class="example  example--bad">design_inspiration_competition_promotion_code_list</pre>
+
+                    <p>
+                        Con la friolera de 50 caracteres, 
+                        difícilmente se puede describir como anodino, 
+                        sin embargo, estoy seguro de que cualquiera que viniera después me habría maldecido por usar un nombre tan largo.
+                        Un nombre mucho mejor para mi lista de códigos de promoción habría sido:
+                    </p>
+
+                    <pre class="example  example--good">promotion_codes</pre>
+
+                    <p>
+                        O posiblemente:
+                    </p>
+
+                    <pre class="example  example--good">promo_codes</pre>
+
+                    <p>
+                        Sin embargo, se debe tener cuidado al utilizar abreviaturas o acrónimos. 
+                        Solo use un término abreviado si es bien conocido y / o su uso es una práctica estándar 
+                        (por ejemplo, db, id, url, etc.) Si no está seguro de si una forma abreviada de un término es bien conocida,
+                         errar por el lado de precaución y no abrevie:
+                    </p>
+
+                    <pre class="example  example--bad">p_codes</pre>
+
+                    <pre class="example  example--bad">pcs</pre>
+
+                    <p>
+                        Hay una excepción a esta regla: comprensión de listas o diccionarios 
+                        (si no está familiarizado con la comprensión de listas, búsquela). 
+                        El uso de una abreviatura de una sola letra en este caso es preferible
+                         a un nombre más descriptivo, por ejemplo:
+                    </p>
+
+                    <pre class="example  example--bad">[employee.name for employee in employees \
+             if employee.role == “developer”]</pre>
+
+                    <pre class="example  example--good">[e.name for e in employees if e.role == “developers”]</pre>
+
+                    <h2>Sea consciente del alcance</h2>
+
+                    <p>
+                        En la primera regla, redujimos un término muy descriptivo
+                         a una versión más concisa Promotion_codes. Entonces,
+                          ¿por qué no reducirlo más (por ejemplo, códigos) y por qué era aceptable
+                           reducirlo en absoluto? La respuesta está en el alcance.
+                    </p>
+
+                    <p>
+                        El alcance en el que declara una variable determina cuánta 
+                        información debe incluirse en el nombre. Por ejemplo, una
+                         variable declarada en el módulo de configuración de un proyecto 
+                         inferirá poca información de su alcance y, por lo tanto, debe ser más 
+                         descriptiva.
+                    </p>
+
+                    <pre class="example  example--bad">settings.username = 'foo'</pre>
+
+                    <pre class="example  example--good">settings.db_username = 'foo'</pre>
+
+                    <p>
+                        Ahora considere el alcance cuando se usa la misma variable en una función:
+                    </p>
+
+                    <pre class="example  example--bad">def connect_to_db(db_username, db_password):</pre>
+
+                    <pre class="example  example--good">def connect_to_db(username, password):</pre>
+
+                    <p>
+                        El propósito de nuestra función es conectarnos a la base de datos y, 
+                        por lo tanto, podemos inferir que el nombre de usuario y la contraseña 
+                        proporcionados son para este propósito y no es necesario incluir db en los
+                         nombres de las variables.
+                    </p>
+
+                    <p>
+                        En ocasiones, puede ser necesario utilizar nombres más descriptivos 
+                        para evitar un conflicto de nombres dentro del mismo ámbito. 
+                        Considere nuestro primer ejemplo en el que declaramos un nombre de 
+                        usuario para la base de datos en el archivo de configuración, 
+                        ¿qué pasa si el proyecto utiliza varias bases de datos?
+                    </p>
+
+                    <pre class="example  example--good">settings.redis_db_username = ‘foo’
+         ...
+
+         settings.mysql_db_username = ‘bar’
+         ...</pre>
+
+                    <p>
+                        Aquí, el nombre de la aplicación de la base de datos se utiliza 
+                        para asignar un espacio de nombres a las variables y evitar cualquier 
+                        conflicto, manteniendo los nombres lo más concisos posible.
+                    </p>
+
+                    <h2>Pluralice al nombrar colecciones</h2>
+
+                    <p>
+                        Hubo un momento en el que habría 
+                        evitado el uso de plurales a toda costa, en lugar de optar por 
+                        seguir la convención de agregar _list a cualquier variable asociada 
+                        con una colección de elementos. Con el beneficio del tiempo, he llegado a 
+                        preferir nombres de variables que suenan naturales.
+                    </p>
+
+                    <pre class="example">for colour in colour_list:
+        ...
+
+    for colour in colours:
+        ...</pre>
+
+                    <p>
+                        Me he abstenido de marcar cualquiera de los ejemplos como buenos o malos, 
+                        ya que ambos son aceptables a mis ojos, sin embargo, los colores serían el 
+                        término preferido puramente en la base, es el sonido más conciso y natural.
+                    </p>
+
+                    <p>
+                        Los defensores del uso de <i>_list</i> suelen argumentar que reduce 
+                        los errores de ortografía comunes con palabras como categoría / 
+                        categorías y héroe / héroes. Yo contradeciría que de la misma manera
+                         que revisaré la gramática y la ortografía de este documento antes 
+                         de pedirle que lo lea, usted debe sentirse orgulloso del código que
+                        escribe.
+                        
+
+                    </p>
+
+                    <h2>Lee tu código en voz alta</h2>
+
+                    <p>
+                        Si puede leer una línea de código y comprenderla en una, es una buena 
+                        indicación de que está bien escrita con buenos nombres de variables. 
+                        Si, por otro lado, si los frascos o se vuelve a leer varias veces antes 
+                        de que tenga sentido, entonces hay margen de mejora.
+                    </p>
+
+                    <p>
+                        Leer su código en voz alta (o en su cabeza si está atrayendo demasiada atención)
+                         es una forma segura de detectar variables mal nombradas.
+                    </p>
+
+                    <h2>Por encima de todo, sé consistente</h2>
+
+                    <p>
+                        Cuando trabaja con código antiguo o escrito externamente, 
+                        es probable que existan diferencias en las reglas que los autores 
+                        usaron al crear nombres de variables. A menos que vaya a reescribir 
+                        y mantener todo el código en el futuro, no rompa las convenciones de 
+                        nomenclatura existentes.
+                    </p>
+
+                    <p>
+                        Si anteponen números con num_ o agregan _list a las listas, entonces siguen 
+                        la suite, mientras que la sabiduría convencional nos dice que dos errores no 
+                        hacen un bien, mezclar estilos dentro de un proyecto solo empeorará las cosas.
+                    </p>
+
+                    
+
+            </section>
+            <aside class="article__related">
+                <div
+                    data-editable
+                    data-name="author"
+                    class="[ article__author ]  [ author ]  [ editable ]"
+                    >
+
+                    <h3 class="author__about">Sobre el Autor</h3>
+
+                    <img
+                        src="ThiagoSequeira.jpg"
+                        alt="Thiago Sequeira"
+                        width="80"
+                        class="[ author__pic ]  [ align-right ]"
+                        >
+
+                    <p class="author__bio">
+
+                        Thiago Sequeira es fundador de Carayá, 
+                        una empresa con un enfoque en la tecnología web. 
+                        Le gusta escribir y hablar sobre tecnología, especialmente código.
+                    </p>
+
+                </div>
+                <div
+                    data-editable
+                    data-name="learn-more"
+                    class="[ article__learn-more ]  [ learn-more ]  [ editable ]"
+                    >
+
+                    <h3 data-ce-tag="static">¿Quiere leer más?</h3>
+
+                </div>
+            </aside>
+        </article>
+        <script type="text/javascript" src="../build/content-tools.js"></script>
+        <script type="text/javascript" src="sandbox.js"></script>
+    </body>
+</html>
